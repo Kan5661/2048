@@ -6,13 +6,13 @@ addEventListener('keydown', onPress)
 // Global variables
 let BlocksOnBoard = []
 const assets = {
-    block2: 'url("./assets/2.png")',
-    block4: 'url("./assets/4.png")',
-    block8: 'url("./assets/8.png")',
-    block16: 'url("./assets/16.png")',
-    block32: 'url("./assets/32.png")',
-    block64: 'url("./assets/64.png")',
-    block128: 'url("./assets/128.png")',
+    1: 'url("./assets/2.png")',
+    2: 'url("./assets/4.png")',
+    3: 'url("./assets/8.png")',
+    4: 'url("./assets/16.png")',
+    5: 'url("./assets/32.png")',
+    6: 'url("./assets/64.png")',
+    7: 'url("./assets/128.png")',
 }
 
 //// GAME LOGIC
@@ -24,7 +24,7 @@ function random2block() {
         if (boxes[i].style.backgroundImage == '') {emptyBlocks.push(boxes[i])}
     }
     newBlockIndex = Math.floor(Math.random() * emptyBlocks.length)
-    emptyBlocks[newBlockIndex].style.backgroundImage = assets.block2
+    emptyBlocks[newBlockIndex].style.backgroundImage = assets['1']
 }
 
 // WASD + Arrow keys
@@ -49,14 +49,19 @@ function Combine(nextBlock, NB_incre) {
         if ((i % 4 < 3)) {  
             if (boxes[i].style.backgroundImage != '') {
                 currentBlockIMG = boxes[i].style.backgroundImage
-                boxes[i].style.backgroundImage = ''
                 
                 if (boxes[i + 1].style.backgroundImage == currentBlockIMG) {
-                    boxes[i + 1].style.backgroundImage = assets.block4
+                    boxes[i + 1].style.backgroundImage = assets[String(Number('1') + 1)]
+                    boxes[i].style.backgroundImage = ''
+                    break
                 }
                     
-                else {
-                    boxes[i + 1].style.backgroundImage = assets.block2
+                else if (boxes[i + 1].style.backgroundImage == '') {
+                    boxes[i + 1].style.backgroundImage = assets['1']
+                    boxes[i].style.backgroundImage = ''
+                }
+                else if (boxes[i + 1].style.backgroundImage != currentBlockIMG) {
+                    
                 }
                 
             }
