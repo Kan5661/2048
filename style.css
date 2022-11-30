@@ -13,8 +13,7 @@
     margin: 3px;
     text-align: center;
     background-size: contain;
-    box-shadow: 3px 5px 5px lightblue;
-    background-color: rgb(244, 228, 228);
+    box-shadow: 5px 5px 5px 2px lightblue;
     
     
 }
