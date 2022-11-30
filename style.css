@@ -10,9 +10,10 @@
     border: 2px solid black;
     width: 20vw;
     height: 20vw;
-    margin: 1px;
+    margin: 3px;
     text-align: center;
     background-size: contain;
+    box-shadow: 5px 5px 5px 2px lightblue;
     
     
 }
@@ -21,4 +22,24 @@
         width: 15vh;
         height: 15vh
     }
+}
+h1 {
+    text-align: center;
+    font-size: 10vw;
+    background-color: black;
+}
+.two {
+    color: rgb(83, 237, 0)
+}
+.zero {
+    color: rgb(0, 83, 128)
+}
+.four {
+    color: red
+}
+.eight {
+    color: rgb(47, 3, 40)
+}
+body {
+    background-color: rgb(196, 210, 176)
 }
