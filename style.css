@@ -3,17 +3,17 @@
     height: 100vh;
     width: 97vw;
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
 }
 
 .box {
     border: 2px solid black;
     width: 20vw;
     height: 20vw;
-    margin: 3px;
+    margin: 4px;
     text-align: center;
     background-size: contain;
-    box-shadow: 5px 5px 5px 2px lightblue;
+    background-color: azure;
     
     
 }
@@ -26,7 +26,8 @@
 h1 {
     text-align: center;
     font-size: 10vw;
-    background-color: black;
+    width: 100vw;
+    background-color: white;
 }
 .two {
     color: rgb(83, 237, 0)
@@ -41,5 +42,5 @@ h1 {
     color: rgb(47, 3, 40)
 }
 body {
-    background-color: rgb(196, 210, 176)
+    background-image: url("assets/color-stripesBG.png");
 }

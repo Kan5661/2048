@@ -1,5 +1,6 @@
 // Grab elements and applying listeners
 let boxes = document.querySelectorAll(".box")
+addEventListener('keydown', onPress) //add event listener to the whole page
 
 // Global variables
 let BlocksOnBoard = []
@@ -19,7 +20,7 @@ const assets = [
 
 //// GAME LOGIC
 
-// Create a 2 block at a random empty square
+// Create a '2' block at a random empty square
 function random2block() {
     let emptyBlocks = [], newBlockIndex
     for (let i = 0; i < boxes.length; i++) {
@@ -29,22 +30,27 @@ function random2block() {
     emptyBlocks[newBlockIndex].style.backgroundImage = assets[0]
 }
 
-// WASD + Arrow keys
+// WASD + Arrow keys event listener
 function onPress(onPress) {
     if (onPress.key == 'w' || onPress.key == 'ArrowUp') {
         CombineUp(-1)
+        applyGlow()
     }
     if (onPress.key == 'a' || onPress.key == 'ArrowLeft') {
         CombineLeft(-1)
+        applyGlow()
     }
     if (onPress.key == 's' || onPress.key == 'ArrowDown') {
         CombineDown(1)
+        applyGlow()
     }
     if (onPress.key == 'd' || onPress.key == 'ArrowRight') {
         CombineRight(1)
+        applyGlow()
     }
 }
 
+// Combine logic for down
 function CombineDown(NB_incre) {
     let currentBlockIMG
     for (let i = 0; i < boxes.length; i++) {
@@ -69,6 +75,7 @@ function CombineDown(NB_incre) {
     random2block()
 }
 
+// Combine logic for up
 function CombineUp(NB_incre) {
     let currentBlockIMG
     for (let i = 15; i > 0 ; i--) {
@@ -93,6 +100,7 @@ function CombineUp(NB_incre) {
     random2block()
 }
 
+// Combine logic for right
 function CombineRight(NB_incre) {
     let RsortedBoxes = [boxes[0], boxes[4], boxes[8], boxes[12], 
                         boxes[1], boxes[5], boxes[9], boxes[13],
@@ -128,6 +136,7 @@ function CombineRight(NB_incre) {
     random2block()
 }
 
+// Combine logic for left
 function CombineLeft(NB_incre) {
     let RsortedBoxes = [boxes[0], boxes[4], boxes[8], boxes[12], 
                         boxes[1], boxes[5], boxes[9], boxes[13],
@@ -163,5 +172,32 @@ function CombineLeft(NB_incre) {
     random2block()
 }
 
+// Apply glow effect to blocks
+function applyGlow() {
+    for (let i = 0; i < 16; i++) {
+        switch(boxes[i].style.backgroundImage) {
+            case assets[0]: boxes[i].style.boxShadow = ""; break;
+            case assets[1]: boxes[i].style.boxShadow = "0px 0px 5px 0.3px yellow"; break;
+            case assets[2]: boxes[i].style.boxShadow = "0px 0px 5px 0.3px #FFB319"; break;
+            case assets[3]: boxes[i].style.boxShadow = "0px 0px 5px 1px #E69900"; break;
+            case assets[4]: boxes[i].style.boxShadow = "0px 0px 5px 1px orange"; break;
+            case assets[5]: boxes[i].style.boxShadow = "0px 0px 6px 2px #FF4019"; break;
+            case assets[6]: boxes[i].style.boxShadow = "0px 0px 7px 3px red"; break;
+            case assets[7]: boxes[i].style.boxShadow = "0px 0px 10px 4px red"; break;
+            case assets[8]: boxes[i].style.boxShadow = "0px 0px 10px 5px red"; break;
+            case assets[9]: boxes[i].style.boxShadow = "0px 0px 10px 6px #E60026"; break;
+            case assets[10]: boxes[i].style.boxShadow = "0px 0px 15px 10px #800015"; break;
+            default: boxes[i].style.boxShadow = ""
+        }
+    }
+}
+
+// Calling the functions
 addEventListener('keydown', onPress)
-random2block()
+// initital block when game starts
+// random2block()
+
+for (let i = 0; i < 11; i++) {
+    boxes[i].style.backgroundImage = assets[i]
+}
+applyGlow()
