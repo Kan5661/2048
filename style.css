@@ -1,9 +1,7 @@
 .board {
     display: flex;
-    height: 100vh;
-    width: 97vw;
     justify-content: center;
-    /* align-items: center; */
+    height: 75vh;
 }
 
 .box {
@@ -28,6 +26,13 @@ h1 {
     font-size: 10vw;
     width: 100vw;
     background-color: white;
+    border-radius: 10%;
+    border: solid black 3px
+}
+h2 {
+    text-align: center;
+    font-style: bold;
+    color: rgb(203, 149, 0)
 }
 .two {
     color: rgb(83, 237, 0)
@@ -43,4 +48,10 @@ h1 {
 }
 body {
     background-image: url("assets/color-stripesBG.png");
+    height: 130vh;
+}
+.btn {
+    display: flex;
+    justify-content: center;
+    
 }

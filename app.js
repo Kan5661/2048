@@ -1,9 +1,10 @@
 // Grab elements and applying listeners
 let boxes = document.querySelectorAll(".box")
+let scoreText = document.getElementsByTagName('h2')
 addEventListener('keydown', onPress) //add event listener to the whole page
 
 // Global variables
-let BlocksOnBoard = []
+let RsortedBoxes, score = 0, win = false, lose = false
 const assets = [
         'url("./assets/2.png")',
         'url("./assets/4.png")',
@@ -30,21 +31,21 @@ function random2block() {
     emptyBlocks[newBlockIndex].style.backgroundImage = assets[0]
 }
 
-// WASD + Arrow keys event listener
+// WASD keys event listener
 function onPress(onPress) {
-    if (onPress.key == 'w' || onPress.key == 'ArrowUp') {
+    if (onPress.key == 'w') {
         CombineUp(-1)
         applyGlow()
     }
-    if (onPress.key == 'a' || onPress.key == 'ArrowLeft') {
+    if (onPress.key == 'a') {
         CombineLeft(-1)
         applyGlow()
     }
-    if (onPress.key == 's' || onPress.key == 'ArrowDown') {
+    if (onPress.key == 's') {
         CombineDown(1)
         applyGlow()
     }
-    if (onPress.key == 'd' || onPress.key == 'ArrowRight') {
+    if (onPress.key == 'd') {
         CombineRight(1)
         applyGlow()
     }
@@ -61,6 +62,8 @@ function CombineDown(NB_incre) {
                 if (boxes[i + NB_incre].style.backgroundImage == currentBlockIMG) {
                     boxes[i + NB_incre].style.backgroundImage = assets[assets.indexOf(currentBlockIMG) + 1]
                     boxes[i].style.backgroundImage = ''
+                    score += 2**(assets.indexOf(currentBlockIMG) + 2)
+                    scoreText[0].innerHTML = `Score: ${score}`
                     i++
                 }
                     
@@ -86,6 +89,8 @@ function CombineUp(NB_incre) {
                 if (boxes[i + NB_incre].style.backgroundImage == currentBlockIMG) {
                     boxes[i + NB_incre].style.backgroundImage = assets[assets.indexOf(currentBlockIMG) + 1]
                     boxes[i].style.backgroundImage = ''
+                    score += 2**(assets.indexOf(currentBlockIMG) + 2)
+                    scoreText[0].innerHTML = `Score: ${score}`
                     i--
                 }
                     
@@ -102,12 +107,7 @@ function CombineUp(NB_incre) {
 
 // Combine logic for right
 function CombineRight(NB_incre) {
-    let RsortedBoxes = [boxes[0], boxes[4], boxes[8], boxes[12], 
-                        boxes[1], boxes[5], boxes[9], boxes[13],
-                        boxes[2], boxes[6], boxes[10], boxes[14],
-                        boxes[3], boxes[7], boxes[11], boxes[15]
-                    ]
-
+    sortBoxes()
     let currentBlockIMG
     for (let i = 0; i < boxes.length; i++) {
         if (i != 3 && i != 7 && i != 11 && i != 15) {  
@@ -117,6 +117,8 @@ function CombineRight(NB_incre) {
                 if (RsortedBoxes[i + NB_incre].style.backgroundImage == currentBlockIMG) {
                     RsortedBoxes[i + NB_incre].style.backgroundImage = assets[assets.indexOf(currentBlockIMG) + 1]
                     RsortedBoxes[i].style.backgroundImage = ''
+                    score += 2**(assets.indexOf(currentBlockIMG) + 2)
+                    scoreText[0].innerHTML = `Score: ${score}`
                     i++
                 }
                     
@@ -128,22 +130,13 @@ function CombineRight(NB_incre) {
             }
         }
     }
-    boxes = [RsortedBoxes[0], RsortedBoxes[4], RsortedBoxes[8], RsortedBoxes[12], 
-             RsortedBoxes[1], RsortedBoxes[5], RsortedBoxes[9], RsortedBoxes[13],
-             RsortedBoxes[2], RsortedBoxes[6], RsortedBoxes[10], RsortedBoxes[14],
-             RsortedBoxes[3], RsortedBoxes[7], RsortedBoxes[11], RsortedBoxes[15]
-            ]
+    reSortBoxes()
     random2block()
 }
 
 // Combine logic for left
 function CombineLeft(NB_incre) {
-    let RsortedBoxes = [boxes[0], boxes[4], boxes[8], boxes[12], 
-                        boxes[1], boxes[5], boxes[9], boxes[13],
-                        boxes[2], boxes[6], boxes[10], boxes[14],
-                        boxes[3], boxes[7], boxes[11], boxes[15]
-                    ]
-
+    sortBoxes()
     let currentBlockIMG
     for (let i = 15; i > 0; i--) {
         if (i != 0 && i != 4 && i != 8 && i != 12) {  
@@ -153,6 +146,8 @@ function CombineLeft(NB_incre) {
                 if (RsortedBoxes[i + NB_incre].style.backgroundImage == currentBlockIMG) {
                     RsortedBoxes[i + NB_incre].style.backgroundImage = assets[assets.indexOf(currentBlockIMG) + 1]
                     RsortedBoxes[i].style.backgroundImage = ''
+                    score += 2**(assets.indexOf(currentBlockIMG) + 2)
+                    scoreText[0].innerHTML = `Score: ${score}`
                     i--
                 }
                     
@@ -164,11 +159,7 @@ function CombineLeft(NB_incre) {
             }
         }
     }
-    boxes = [RsortedBoxes[0], RsortedBoxes[4], RsortedBoxes[8], RsortedBoxes[12], 
-             RsortedBoxes[1], RsortedBoxes[5], RsortedBoxes[9], RsortedBoxes[13],
-             RsortedBoxes[2], RsortedBoxes[6], RsortedBoxes[10], RsortedBoxes[14],
-             RsortedBoxes[3], RsortedBoxes[7], RsortedBoxes[11], RsortedBoxes[15]
-            ]
+    reSortBoxes()
     random2block()
 }
 
@@ -182,9 +173,9 @@ function applyGlow() {
             case assets[3]: boxes[i].style.boxShadow = "0px 0px 5px 1px #E69900"; break;
             case assets[4]: boxes[i].style.boxShadow = "0px 0px 5px 1px orange"; break;
             case assets[5]: boxes[i].style.boxShadow = "0px 0px 6px 2px #FF4019"; break;
-            case assets[6]: boxes[i].style.boxShadow = "0px 0px 7px 3px red"; break;
-            case assets[7]: boxes[i].style.boxShadow = "0px 0px 10px 4px red"; break;
-            case assets[8]: boxes[i].style.boxShadow = "0px 0px 10px 5px red"; break;
+            case assets[6]: boxes[i].style.boxShadow = "0px 0px 7px 3px #FF4019"; break;
+            case assets[7]: boxes[i].style.boxShadow = "0px 0px 10px 6px red"; break;
+            case assets[8]: boxes[i].style.boxShadow = "0px 0px 10px 6px red"; break;
             case assets[9]: boxes[i].style.boxShadow = "0px 0px 10px 6px #E60026"; break;
             case assets[10]: boxes[i].style.boxShadow = "0px 0px 15px 10px #800015"; break;
             default: boxes[i].style.boxShadow = ""
@@ -192,12 +183,36 @@ function applyGlow() {
     }
 }
 
+function checkWinLose() {
+    for (let i = 0; i < boxes.length; i++) {
+        if (boxes[i].style.backgroundImage == assets[10]) win == true
+    }
+}
+
+function reSortBoxes() {
+    boxes = [
+            RsortedBoxes[0], RsortedBoxes[4], RsortedBoxes[8], RsortedBoxes[12], 
+            RsortedBoxes[1], RsortedBoxes[5], RsortedBoxes[9], RsortedBoxes[13],
+            RsortedBoxes[2], RsortedBoxes[6], RsortedBoxes[10], RsortedBoxes[14],
+            RsortedBoxes[3], RsortedBoxes[7], RsortedBoxes[11], RsortedBoxes[15]
+        ]
+}
+function sortBoxes() {
+    RsortedBoxes = [
+            boxes[0], boxes[4], boxes[8], boxes[12], 
+            boxes[1], boxes[5], boxes[9], boxes[13],
+            boxes[2], boxes[6], boxes[10], boxes[14],
+            boxes[3], boxes[7], boxes[11], boxes[15]
+        ]
+}
 // Calling the functions
 addEventListener('keydown', onPress)
 // initital block when game starts
-// random2block()
+random2block()
 
+boxes[0].style.backgroundImage = assets[0]
 for (let i = 0; i < 11; i++) {
-    boxes[i].style.backgroundImage = assets[i]
+    boxes[i+1].style.backgroundImage = assets[i]
 }
 applyGlow()
+
