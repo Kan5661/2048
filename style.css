@@ -20,7 +20,7 @@ h1 {
     text-align: center;
     font-size: 10vw;
     width: 100vw;
-    border-radius: 10%;
+    border-radius: 100px;
     border: solid black 3px;
     animation-name: title2;
     animation-duration: 15s;
@@ -34,6 +34,7 @@ h2 {
     width: 30vw;
     margin: auto;
     margin-bottom: 10px;
+    border-radius: 50px
 }
 .two {
     color: red
