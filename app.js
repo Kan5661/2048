@@ -210,9 +210,9 @@ addEventListener('keydown', onPress)
 // initital block when game starts
 random2block()
 
-boxes[0].style.backgroundImage = assets[0]
-for (let i = 0; i < 11; i++) {
-    boxes[i+1].style.backgroundImage = assets[i]
-}
-applyGlow()
+// boxes[0].style.backgroundImage = assets[0]
+// for (let i = 0; i < 11; i++) {
+//     boxes[i+1].style.backgroundImage = assets[i]
+// }
+// applyGlow()
 
