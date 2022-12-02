@@ -1,13 +1,14 @@
 // Grab elements and applying listeners
 let boxes = document.querySelectorAll(".box")
-let scoreText = document.getElementsByTagName('h2')
+let scoreText = document.getElementsByClassName('scoreBoard')
 let clearBtn = document.getElementsByClassName('clear')
+let winText = document.getElementsByClassName('winText')
 
 addEventListener('keydown', onPress) //add event listener to the whole page
 clearBtn[0].addEventListener('click', clearAnimation)
 
 // Global variables
-let RsortedBoxes, score = 0, highScore = 0, win = false, lose = false
+let RsortedBoxes, score = 0, highScore = 0, game = true
 const assets = [
         'url("./assets/2.png")',
         'url("./assets/4.png")',
@@ -38,15 +39,19 @@ function random2block() {
 function onPress(onPress) {
     if (onPress.key == 'w') {
         CombineUp(-1)
+        checkWin()
     }
     if (onPress.key == 'a') {
         CombineLeft(-1)
+        checkWin()
     }
     if (onPress.key == 's') {
         CombineDown(1)
+        checkWin()
     }
     if (onPress.key == 'd') {
         CombineRight(1)
+        checkWin()
     }
     applyGlow()
 }
@@ -63,7 +68,7 @@ function CombineDown(NB_incre) {
                     boxes[i + NB_incre].style.backgroundImage = assets[assets.indexOf(currentBlockIMG) + 1]
                     boxes[i].style.backgroundImage = ''
                     score += 2**(assets.indexOf(currentBlockIMG) + 2)
-                    scoreText[0].innerHTML = `Score: ${score}`
+                    scoreText[0].innerHTML = `Score: ${score}  High Score: ${highScore}`
                     i++
                 }
                     
@@ -90,7 +95,7 @@ function CombineUp(NB_incre) {
                     boxes[i + NB_incre].style.backgroundImage = assets[assets.indexOf(currentBlockIMG) + 1]
                     boxes[i].style.backgroundImage = ''
                     score += 2**(assets.indexOf(currentBlockIMG) + 2)
-                    scoreText[0].innerHTML = `Score: ${score}`
+                    scoreText[0].innerHTML = `Score: ${score}  High Score: ${highScore}`
                     i--
                 }
                     
@@ -118,7 +123,7 @@ function CombineRight(NB_incre) {
                     RsortedBoxes[i + NB_incre].style.backgroundImage = assets[assets.indexOf(currentBlockIMG) + 1]
                     RsortedBoxes[i].style.backgroundImage = ''
                     score += 2**(assets.indexOf(currentBlockIMG) + 2)
-                    scoreText[0].innerHTML = `Score: ${score}`
+                    scoreText[0].innerHTML = `Score: ${score}  High Score: ${highScore}`
                     i++
                 }
                     
@@ -147,7 +152,7 @@ function CombineLeft(NB_incre) {
                     RsortedBoxes[i + NB_incre].style.backgroundImage = assets[assets.indexOf(currentBlockIMG) + 1]
                     RsortedBoxes[i].style.backgroundImage = ''
                     score += 2**(assets.indexOf(currentBlockIMG) + 2)
-                    scoreText[0].innerHTML = `Score: ${score}`
+                    scoreText[0].innerHTML = `Score: ${score}  High Score: ${highScore}`
                     i--
                 }
                     
@@ -186,8 +191,7 @@ function applyGlow() {
 function checkWin() {
     for (let i = 0; i < boxes.length; i++) {
         if (boxes[i].style.backgroundImage == assets[10]) {
-            highScore = score
-            score = 0
+            winText[0].innerHTML = "YOU WON!"
         }
     }
 }
@@ -195,10 +199,12 @@ function checkWin() {
 function clearBoard() {
     for (let i = 0; i < boxes.length; i++) {
         boxes[i].style.backgroundImage = ''
+        winText[0].innerHTML = ''
         applyGlow()
     }
+    highScore = score
     score = 0
-    scoreText[0].innerHTML = `Score: ${score}`
+    scoreText[0].innerHTML = `Score: ${score} High Score: ${highScore}`
     random2block()
 }
 

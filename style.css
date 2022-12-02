@@ -1,7 +1,7 @@
 .board {
     display: flex;
     justify-content: center;
-    height: 60vh;
+    height: 90vw;
 }
 
 .box {
@@ -31,7 +31,7 @@ h2 {
     font-style: bold;
     color: rgb(203, 149, 0);
     background-color: antiquewhite;
-    width: 30vw;
+    width: 70vw;
     margin: auto;
     margin-bottom: 10px;
     border-radius: 50px
@@ -104,5 +104,8 @@ button:active {
     }
     body {
         height: 130vh;
+    }
+    h2 {
+        width: 35vw;
     }
 }
