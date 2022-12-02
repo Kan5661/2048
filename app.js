@@ -1,10 +1,14 @@
 // Grab elements and applying listeners
 let boxes = document.querySelectorAll(".box")
 let scoreText = document.getElementsByTagName('h2')
+let clearBtn = document.getElementsByClassName('clear')
+console.log(clearBtn)
+
 addEventListener('keydown', onPress) //add event listener to the whole page
+clearBtn[0].addEventListener('click', clearBoard)
 
 // Global variables
-let RsortedBoxes, score = 0, win = false, lose = false
+let RsortedBoxes, score = 0, highScore = 0, win = false, lose = false
 const assets = [
         'url("./assets/2.png")',
         'url("./assets/4.png")',
@@ -35,20 +39,17 @@ function random2block() {
 function onPress(onPress) {
     if (onPress.key == 'w') {
         CombineUp(-1)
-        applyGlow()
     }
     if (onPress.key == 'a') {
         CombineLeft(-1)
-        applyGlow()
     }
     if (onPress.key == 's') {
         CombineDown(1)
-        applyGlow()
     }
     if (onPress.key == 'd') {
         CombineRight(1)
-        applyGlow()
     }
+    applyGlow()
 }
 
 // Combine logic for down
@@ -183,10 +184,23 @@ function applyGlow() {
     }
 }
 
-function checkWinLose() {
+function checkWin() {
     for (let i = 0; i < boxes.length; i++) {
-        if (boxes[i].style.backgroundImage == assets[10]) win == true
+        if (boxes[i].style.backgroundImage == assets[10]) {
+            highScore = score
+            score = 0
+        }
     }
+}
+
+function clearBoard() {
+    for (let i = 0; i < boxes.length; i++) {
+        boxes[i].style.backgroundImage = ''
+        scoreText[0].innerHTML = `Score: ${score}`
+        applyGlow()
+    }
+    score = 0
+    random2block()
 }
 
 function reSortBoxes() {
