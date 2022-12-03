@@ -109,3 +109,13 @@ button:active {
         width: 35vw;
     }
 }
+.combineButton {
+    display: flex;
+    flex-direction: row;
+    width: 20vw;
+}
+.button {
+    width: 5vw;
+    height: 5vw;
+    border: 1px solid black
+}

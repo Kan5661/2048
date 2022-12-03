@@ -1,4 +1,16 @@
-# 2048
+# 2048 
 
-## Pseudocode for the overall gameplay
-idk
+### Description
+
+
+### Technical Requirements
+
+
+### Technologies Used
+
+
+### Future Features
+
+### MVP Goals
+
+
