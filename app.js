@@ -131,7 +131,6 @@ function CombineRight(NB_incre) {
                     RsortedBoxes[i + NB_incre].style.backgroundImage = assets[assets.indexOf(currentBlockIMG)]
                     RsortedBoxes[i].style.backgroundImage = ''
                 }
-                
             }
         }
     }
@@ -202,7 +201,7 @@ function clearBoard() {
         winText[0].innerHTML = ''
         applyGlow()
     }
-    highScore = score
+    if (score > highScore) highScore = score
     score = 0
     scoreText[0].innerHTML = `Score: ${score} High Score: ${highScore}`
     random2block()
@@ -232,7 +231,8 @@ function clearAnimation(clearAnimation) {
     let opacity = 1, degree = 0, borderRad = 0, clear = true
     let animationTimer = setInterval(frame, 20)
     timer = Date.now()
-    function drawBoxes() {
+    clearBtn[0].disabled = true
+    function updateBox() {
         for (let i = 0; i < boxes.length; i++) {
             boxes[i].style.opacity = opacity
             boxes[i].style.transform = `rotate(${degree}deg)`
@@ -245,13 +245,14 @@ function clearAnimation(clearAnimation) {
             opacity = 1
             degree = 0
             borderRad = 0
-            drawBoxes()
+            clearBtn[0].disabled = false
+            updateBox()
         }
         else if(Date.now() - timer < 2000) {
             opacity -= 0.01
             degree += 3.5
             borderRad += 0.5
-            drawBoxes()
+            updateBox()
 
         }
         else if(Date.now() - timer > 2000) {
@@ -262,10 +263,9 @@ function clearAnimation(clearAnimation) {
             opacity += 0.01
             degree -= 3.5
             borderRad -= 0.5
-            drawBoxes()
+            updateBox()
         }
     }
-    
 }
 
 

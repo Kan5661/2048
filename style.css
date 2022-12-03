@@ -19,7 +19,9 @@
 h1 {
     text-align: center;
     font-size: 10vw;
-    width: 100vw;
+    margin: auto;
+    margin-bottom: 10px;
+    width: 95vw;
     border-radius: 100px;
     border: solid black 3px;
     animation-name: title2;
@@ -54,7 +56,7 @@ body {
 }
 .btn {
     display: flex;
-    justify-content: center;
+    justify-content:center;
 }
 button {
     width: 30vw;
@@ -108,14 +110,18 @@ button:active {
     h2 {
         width: 35vw;
     }
+    h1 {
+        font-size: 5vw
+    }
 }
-.combineButton {
+.combineButtons {
     display: flex;
-    flex-direction: row;
-    width: 20vw;
+    justify-content: space-around;
+    margin-top: 10vh;
+
 }
 .button {
-    width: 5vw;
-    height: 5vw;
+    width: 20vw;
+    height: 20vw;
     border: 1px solid black
 }
