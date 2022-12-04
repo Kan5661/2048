@@ -12,7 +12,7 @@
     text-align: center;
     background-size: contain;
     background-color: azure;
-    
+    box-shadow: 0px 0px 5px 0.3px rgb(50, 26, 158);
     
 }
 
@@ -63,16 +63,16 @@ body {
     height: 8vh;
     margin-top: 10%;
     border-radius: 10%;
-    border: solid rgb(55, 144, 84) 3px;
-    background-color: rgb(163, 241, 53);
+    border: solid rgb(43, 44, 43) 3px;
+    background-color: rgb(255, 255, 255);
     font-size: 5vw;
     position: relative;
 
 
 }
 .clear:hover {
-    box-shadow: 5px 5px 20px 5px rgb(0, 179, 0);
-    background-color: rgb(195, 255, 112);
+    box-shadow: 3px 5px 10px 1px rgb(32, 120, 32);
+    background-color: rgb(124, 239, 109);
 }
 .clear:active {
     left: 5px;
@@ -97,7 +97,7 @@ body {
 .combineButtons {
     display: flex;
     justify-content: space-around;
-    margin-top: 10vh;
+    margin-top: 3vh;
 
 }
 .mobileButton {
@@ -110,19 +110,47 @@ body {
 }
 #combineUp {
     background-image: url('./assets/combine_up.png');
-    border: solid 3px orange
+    border: solid 3px orange;
+    position: relative;
 }
 #combineLeft {
     background-image: url('./assets/combine_left.png');
-    border: solid 3px blue
+    border: solid 3px blue;
+    position: relative;
 }
 #combineRight {
     background-image: url('./assets/combine_right.png');
-    border: solid 3px rgb(0, 164, 8)
+    border: solid 3px rgb(0, 164, 8);
+    position: relative;
 }
 #combineDown {
     background-image: url('./assets/combine_down.png');
-    border: solid 3px rgb(255, 0, 76)
+    border: solid 3px rgb(255, 0, 76);
+    position: relative;
+}
+#combineDown:active {
+    top: 5px
+}
+#combineRight:active {
+    left: 5px
+}
+#combineLeft:active {
+    right: 5px
+}
+#combineUp:active {
+    bottom: 5px
+}
+#combineDown:hover {
+    box-shadow: 0px 0px 3px 2px rgb(247, 9, 108);
+}
+#combineRight:hover {
+    box-shadow: 0px 0px 3px 2px rgb(16, 91, 3);
+}
+#combineLeft:hover {
+    box-shadow: 0px 0px 3px 2px rgb(5, 31, 160);
+}
+#combineUp:hover {
+    box-shadow: 0px 0px 3px 2px yellow;
 }
 
 @media screen and (min-width: 700px){
@@ -154,9 +182,6 @@ body {
     .mobileButton {
         width: 20vw;
         height: 20vw;
-        border: 1px solid black;
-        position: static;
-        border-radius: 50%;
         box-shadow: -5px 8px 15px 2px rgb(66, 66, 67);
     }
 }

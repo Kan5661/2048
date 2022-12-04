@@ -3,9 +3,15 @@ let boxes = document.querySelectorAll(".box")
 let scoreText = document.getElementsByClassName('scoreBoard')
 let clearBtn = document.getElementsByClassName('clear')
 let winText = document.getElementsByClassName('winText')
+let mobileButtons = document.querySelectorAll(".mobileButton")
 
-addEventListener('keydown', onPress) //add event listener to the whole page
-clearBtn[0].addEventListener('click', clearAnimation)
+addEventListener('keydown', onPress) //add event listener to the whole page to listen for WASD key-press to combine
+clearBtn[0].addEventListener('click', clearAnimation) // listener on clear btw that will activate clear animation function
+
+for (let i = 0; i < mobileButtons.length; i++) {
+    mobileButtons[i].addEventListener('click', combinePress)
+}
+
 
 // Global variables
 let RsortedBoxes, score = 0, highScore = 0, game = true
@@ -32,28 +38,39 @@ function random2block() {
         if (boxes[i].style.backgroundImage == '') {emptyBlocks.push(boxes[i])}
     }
     newBlockIndex = Math.floor(Math.random() * emptyBlocks.length)
-    emptyBlocks[newBlockIndex].style.backgroundImage = assets[0]
+    if (emptyBlocks.length > 0) emptyBlocks[newBlockIndex].style.backgroundImage = assets[0]
 }
 
-// WASD keys event listener
+// WASD keys event function
 function onPress(onPress) {
-    if (onPress.key == 'w') {
-        CombineUp(-1)
+    if (game) {
+        if (onPress.key == 'w') {
+            CombineUp(-1)
+        }
+        if (onPress.key == 'a') {
+            CombineLeft(-1)
+        }
+        if (onPress.key == 's') {
+            CombineDown(1)
+        }
+        if (onPress.key == 'd') {
+            CombineRight(1)
+        }
+        applyGlow()
         checkWin()
     }
-    if (onPress.key == 'a') {
-        CombineLeft(-1)
+}
+
+// combine button function
+function combinePress() {
+    if (game) {
+        if (this.id == 'combineUp') CombineUp(-1)
+        if (this.id == 'combineDown') CombineDown(1)
+        if (this.id == 'combineRight') CombineRight(1)
+        if (this.id == 'combineLeft') CombineLeft(-1)
+        applyGlow()
         checkWin()
     }
-    if (onPress.key == 's') {
-        CombineDown(1)
-        checkWin()
-    }
-    if (onPress.key == 'd') {
-        CombineRight(1)
-        checkWin()
-    }
-    applyGlow()
 }
 
 // Combine logic for down
@@ -136,6 +153,7 @@ function CombineRight(NB_incre) {
     }
     reSortBoxes()
     random2block()
+    checkWin()
 }
 
 // Combine logic for left
@@ -182,7 +200,7 @@ function applyGlow() {
             case assets[8]: boxes[i].style.boxShadow = "0px 0px 10px 6px red"; break;
             case assets[9]: boxes[i].style.boxShadow = "0px 0px 10px 6px #E60026"; break;
             case assets[10]: boxes[i].style.boxShadow = "0px 0px 15px 10px #800015"; break;
-            default: boxes[i].style.boxShadow = ""
+            default: boxes[i].style.boxShadow =  "0px 0px 3px 0.3px black"
         }
     }
 }
@@ -191,6 +209,7 @@ function checkWin() {
     for (let i = 0; i < boxes.length; i++) {
         if (boxes[i].style.backgroundImage == assets[10]) {
             winText[0].innerHTML = "YOU WON!"
+            game = false
         }
     }
 }
@@ -205,6 +224,7 @@ function clearBoard() {
     score = 0
     scoreText[0].innerHTML = `Score: ${score} High Score: ${highScore}`
     random2block()
+    game = true
 }
 
 // Functions to sort the boxes nodes list to make it where i can reuse the combine functions
@@ -225,7 +245,7 @@ function sortBoxes() {
         ]
 }
 
-// Animations
+// Clear Animations
 
 function clearAnimation(clearAnimation) {
     let opacity = 1, degree = 0, borderRad = 0, clear = true
@@ -282,7 +302,7 @@ random2block()
 // }
 // applyGlow()
 
-// boxes[1].style.backgroundImage = assets[9]
-// boxes[0].style.backgroundImage = assets[9]
-// applyGlow()
+boxes[1].style.backgroundImage = assets[9]
+boxes[0].style.backgroundImage = assets[9]
+applyGlow()
 
