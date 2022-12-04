@@ -1,5 +1,5 @@
 # 2048 
-
+[Link to github pages](https://kan5661.github.io/2048/)
 ### Description
 This is a 4 by 4 game with the objective of trying to combine blocks into one with a sum of 2048. 
 

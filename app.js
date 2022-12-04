@@ -296,11 +296,10 @@ random2block()
 
 //// tests
 
-
-for (let i = 0; i < 11; i++) {
-    boxes[i+1].style.backgroundImage = assets[i]
-}
-applyGlow()
+// for (let i = 0; i < 11; i++) {
+//     boxes[i+1].style.backgroundImage = assets[i]
+// }
+// applyGlow()
 
 // boxes[1].style.backgroundImage = assets[9]
 // boxes[0].style.backgroundImage = assets[9]
