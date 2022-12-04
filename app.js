@@ -302,7 +302,7 @@ random2block()
 // }
 // applyGlow()
 
-boxes[1].style.backgroundImage = assets[9]
-boxes[0].style.backgroundImage = assets[9]
-applyGlow()
+// boxes[1].style.backgroundImage = assets[9]
+// boxes[0].style.backgroundImage = assets[9]
+// applyGlow()
 
