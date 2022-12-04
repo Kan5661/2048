@@ -101,8 +101,28 @@ body {
 
 }
 .mobileButton {
-    position: absolute;
-    top: -10000px
+    /* position: absolute;
+    top: -10000px; */
+    background-size: contain;
+    height: 10vh;
+    width: 10vh;
+    border-radius: 50%;
+}
+#combineUp {
+    background-image: url('./assets/combine_up.png');
+    border: solid 3px orange
+}
+#combineLeft {
+    background-image: url('./assets/combine_left.png');
+    border: solid 3px blue
+}
+#combineRight {
+    background-image: url('./assets/combine_right.png');
+    border: solid 3px rgb(0, 164, 8)
+}
+#combineDown {
+    background-image: url('./assets/combine_down.png');
+    border: solid 3px rgb(255, 0, 76)
 }
 
 @media screen and (min-width: 700px){
