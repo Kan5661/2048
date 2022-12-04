@@ -44,16 +44,16 @@ function random2block() {
 // WASD keys event function
 function onPress(onPress) {
     if (game) {
-        if (onPress.key == 'w') {
+        if (onPress.key.toLowerCase() == 'w') {
             CombineUp(-1)
         }
-        if (onPress.key == 'a') {
+        if (onPress.key.toLowerCase() == 'a') {
             CombineLeft(-1)
         }
-        if (onPress.key == 's') {
+        if (onPress.key.toLowerCase() == 's') {
             CombineDown(1)
         }
-        if (onPress.key == 'd') {
+        if (onPress.key.toLowerCase() == 'd') {
             CombineRight(1)
         }
         applyGlow()
@@ -296,11 +296,11 @@ random2block()
 
 //// tests
 
-// boxes[0].style.backgroundImage = assets[0]
-// for (let i = 0; i < 11; i++) {
-//     boxes[i+1].style.backgroundImage = assets[i]
-// }
-// applyGlow()
+
+for (let i = 0; i < 11; i++) {
+    boxes[i+1].style.backgroundImage = assets[i]
+}
+applyGlow()
 
 // boxes[1].style.backgroundImage = assets[9]
 // boxes[0].style.backgroundImage = assets[9]
