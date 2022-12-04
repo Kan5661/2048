@@ -58,23 +58,25 @@ body {
     display: flex;
     justify-content:center;
 }
-button {
+.clear {
     width: 30vw;
     height: 8vh;
+    margin-top: 10%;
     border-radius: 10%;
     border: solid rgb(55, 144, 84) 3px;
     background-color: rgb(163, 241, 53);
     font-size: 5vw;
+    position: relative;
 
 
 }
-button:hover {
+.clear:hover {
     box-shadow: 5px 5px 20px 5px rgb(0, 179, 0);
     background-color: rgb(195, 255, 112);
 }
-button:active {
-    margin-top: 5px;
-    margin-left: 5px;
+.clear:active {
+    left: 5px;
+    top: 5px;
     background-color: rgb(225, 255, 183);
 }
 
@@ -91,15 +93,28 @@ button:active {
     75% {background-color: blue;}
     100% {background-color: red;}
 }
+
+.combineButtons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10vh;
+
+}
+.mobileButton {
+    position: absolute;
+    top: -10000px
+}
+
 @media screen and (min-width: 700px){
     .box {
         width: 15vh;
         height: 15vh;
     }
-    button {
+    .clear {
         height: 10vh;
         width: 20vh;
         font-size: 5vh;
+        margin-top: 0
     }
     .board {
         height: 75vh;
@@ -114,14 +129,14 @@ button:active {
         font-size: 5vw
     }
 }
-.combineButtons {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 10vh;
 
-}
-.button {
-    width: 20vw;
-    height: 20vw;
-    border: 1px solid black
+@media screen and (max-width: 700px) {
+    .mobileButton {
+        width: 20vw;
+        height: 20vw;
+        border: 1px solid black;
+        position: static;
+        border-radius: 50%;
+        box-shadow: -5px 8px 15px 2px rgb(66, 66, 67);
+    }
 }
