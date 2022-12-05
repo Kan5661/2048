@@ -29,7 +29,7 @@ h1 {
 }
 @keyframes title2 {
     0% {border-color: red;}
-    25% {border-color: rgb(0, 255, 55);}
+    25% {border-color: rgb(9, 138, 37);}
     50% {border-color: rgb(255, 0, 242);}
     75% {border-color: blue;}
     100% {border-color: red;}
@@ -48,13 +48,13 @@ h2 {
     color: red
 }
 .zero {
-    color: rgb(0, 255, 55)
+    color: rgb(0, 160, 19)
 }
 .four {
     color: rgb(255, 0, 242)
 }
 .eight {
-    color: blue
+    color: rgb(0, 60, 255)
 }
 body {
     background-image: url("assets/color-stripesBG.png");
@@ -140,7 +140,7 @@ body {
     cursor:pointer;
 }
 #combineRight:hover {
-    box-shadow: 0px 0px 3px 2px rgb(16, 91, 3);
+    box-shadow: 0px 0px 5px 3px rgb(24, 124, 6);
     cursor:pointer;
 }
 #combineLeft:hover {
