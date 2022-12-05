@@ -89,7 +89,7 @@ body {
 
 .combineButtons {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     margin-top: 3vh;
 
 }
@@ -97,9 +97,11 @@ body {
     /* position: absolute;
     top: -10000px; */
     background-size: contain;
-    height: 10vh;
-    width: 10vh;
+    height: 100px;
+    width: 100px;
     border-radius: 50%;
+    margin-left: 20px;
+
 }
 #combineUp {
     background-image: url('./assets/combine_up.png');
