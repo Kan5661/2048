@@ -28,6 +28,12 @@ const assets = [
         'url("./assets/1024.png")',
         'url("./assets/2048.png")',
     ]
+// sounds
+let blop = new Audio("./assets/blop.mp3")
+let slide = new Audio("./assets/slide.mp3")
+
+document.getElementById("backgroundSound").play()
+
 
 //// GAME LOGIC
 
@@ -58,6 +64,7 @@ function onPress(onPress) {
         }
         applyGlow()
         checkWin()
+        slide.play()
     }
 }
 
@@ -70,6 +77,7 @@ function combinePress() {
         if (this.id == 'combineLeft') CombineLeft(-1)
         applyGlow()
         checkWin()
+        slide.play()
     }
 }
 
@@ -86,6 +94,7 @@ function CombineDown(NB_incre) {
                     boxes[i].style.backgroundImage = ''
                     score += 2**(assets.indexOf(currentBlockIMG) + 2)
                     scoreText[0].innerHTML = `Score: ${score}  High Score: ${highScore}`
+                    blop.play()
                     i++
                 }
                     
@@ -113,6 +122,7 @@ function CombineUp(NB_incre) {
                     boxes[i].style.backgroundImage = ''
                     score += 2**(assets.indexOf(currentBlockIMG) + 2)
                     scoreText[0].innerHTML = `Score: ${score}  High Score: ${highScore}`
+                    blop.play()
                     i--
                 }
                     
@@ -141,6 +151,7 @@ function CombineRight(NB_incre) {
                     RsortedBoxes[i].style.backgroundImage = ''
                     score += 2**(assets.indexOf(currentBlockIMG) + 2)
                     scoreText[0].innerHTML = `Score: ${score}  High Score: ${highScore}`
+                    blop.play()
                     i++
                 }
                     
@@ -170,6 +181,7 @@ function CombineLeft(NB_incre) {
                     RsortedBoxes[i].style.backgroundImage = ''
                     score += 2**(assets.indexOf(currentBlockIMG) + 2)
                     scoreText[0].innerHTML = `Score: ${score}  High Score: ${highScore}`
+                    blop.play()
                     i--
                 }
                     
