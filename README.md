@@ -20,8 +20,3 @@ Responsive
 - Create animation for combine so the users can actually see what's happening
 - Add themes
 - Sounds
-
-### MVP Goals
-- As the user, I want to be able combine by pressing the WASD keys or with the buttons on the browser.
-- As the user, I want to be able to see my current and highest score.
-- As the user, I want to be able to click/press the 'clear' button and have the all the squares and score to be reset and have my high score updated if I obtained a new high score.
